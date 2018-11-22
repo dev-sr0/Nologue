@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/nologue/nologue.gd" type="Script" id=1]
+[ext_resource path="res://addons/nologue/icon.png" type="Texture" id=2]
+[ext_resource path="res://nologue_demo/assets/fonts/TerminusTTF.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node
+
+func _ready():
+	get_node(\"Nologue\").run()
+	set_process_unhandled_key_input(true)
+	
+func _unhandled_key_input(key_event):
+	if Input.is_action_just_pressed(\"ui_accept\"):
+		get_node(\"Nologue\").next_line()
+	"
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 16
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="Node" type="Node" index="0"]
+
+script = SubResource( 1 )
+
+[node name="Nologue" type="Control" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 59.0
+margin_top = 45.0
+margin_right = 251.0
+margin_bottom = 139.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Margin", "Rect" ]
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+dialogue = [ "Is this finally working?", "/sWow!/r I thought it might never work!", "And just look at how /bgreat/r these /wtext effects/r look!", "/wIt's like I'm some kind of wizard!", "/tI guess it's time to get on with the rest of this game." ]
+font = SubResource( 2 )
+color = Color( 1, 1, 1, 1 )
+skippable = true
+
+
